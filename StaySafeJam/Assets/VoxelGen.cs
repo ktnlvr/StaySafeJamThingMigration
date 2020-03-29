@@ -78,7 +78,7 @@ public class VoxelGen : MonoBehaviour
                     {
                         GameObject FlowerGO = Flowers[Random.Range(3, 7)];
                         GameObject Flower = Instantiate(FlowerGO);
-                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z);
+                        Flower.transform.position = new Vector3(InsBlock.transform.position.x - 0.45f, InsBlock.transform.position.y + 0.5f, InsBlock.transform.position.z - 0.45f);
                     }
                     if (tree > 8) {
 
