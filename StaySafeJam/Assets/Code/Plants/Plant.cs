@@ -5,5 +5,5 @@ using UnityEngine;
 public class Plant : MonoBehaviour, IEntity
 {
     public bool HasPollen;
-    public void BeehiveInitialized(Beehive hive) { }
+    public void BeehiveInitialized(Beehive hive) { hive.Entities.Add(this); }
 }

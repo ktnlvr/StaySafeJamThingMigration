@@ -13,8 +13,7 @@ public partial class BeehiveCollector : Beehive
     {
         timer -= Time.deltaTime;
         if (timer <= 0)
-            if(!particles.isPlaying)
-                particles.Play();
+            particles.gameObject.SetActive(true);
     }
 
     private void OnMouseDown()
@@ -23,11 +22,15 @@ public partial class BeehiveCollector : Beehive
         if(timer <= 0)
         {
             timer = cooldown;
+            ReleaseCollectorBees();
         }
     }
 
     void ReleaseCollectorBees()
     {
+        Debug.Log(base.Entities);
+        particles.gameObject.SetActive(false);
+
         int CollectedPollen = 0;
         List<BeehiveConverter> converters = new List<BeehiveConverter> { };
 
@@ -44,7 +47,5 @@ public partial class BeehiveCollector : Beehive
 
         foreach (BeehiveConverter converter in converters)
             converter.UploadPollen(AmountToSend);
-
-        particles.Stop();
     }
 }

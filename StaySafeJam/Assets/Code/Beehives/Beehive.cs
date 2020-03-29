@@ -8,7 +8,7 @@ public class Beehive : MonoBehaviour, IEntity
     public void OnEnable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
     public void OnDisable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
 
-    protected List<IEntity> Entities;
+    public List<IEntity> Entities;
 
     void Init()
     {
@@ -25,5 +25,10 @@ public class Beehive : MonoBehaviour, IEntity
         if(hive != this && !Entities.Contains(hive))
             Entities.Add(hive);
             hive.Entities.Add(this);
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 9f);
     }
 }
