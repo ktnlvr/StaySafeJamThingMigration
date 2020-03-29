@@ -14442,6 +14442,7 @@ MonoBehaviour:
   timer: 0
   working: 0
   flowMode: 0
+  buzzSource: {fileID: 0}
   plants: []
   hiveActiveP: {fileID: 230696519335514173}
   beesWorkingP: {fileID: 4537249034480154184}
