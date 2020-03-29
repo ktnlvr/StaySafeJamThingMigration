@@ -15,20 +15,8 @@ public partial class BeehiveCollector : Beehive
         if (timer <= 0 && PollenCount > 0)
             particles.gameObject.SetActive(true);
     }
-    private void Start()
-    {
-        Init();
-    }
-    void Init()
-    {
-        /*
-        Plant[] planties = FindObjectsOfType<Plant>();
-        foreach(Plant plant in plants)
-            if(Vector3.Distance(plant.transform.position, transform.position) < 10)
-                plants.Add(plant);
-                */
-        GameManager.beehiveInit.Invoke(this);
-    }
+    private void Start() => Init();
+    void Init() => GameManager.beehiveInit.Invoke(this);
 
     private void OnMouseDown()
     {
@@ -36,8 +24,7 @@ public partial class BeehiveCollector : Beehive
         if(timer <= 0)
         {
             timer = cooldown;
-            foreach (Plant plant in plants)
-                print(plant);
+            PollenCount = plants.Count;
         }
     }
 }

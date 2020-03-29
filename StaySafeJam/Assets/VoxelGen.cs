@@ -66,7 +66,11 @@ public class VoxelGen : MonoBehaviour
                     {
                         GameObject FlowerGO = Flowers[Random.Range(0, Flowers.Length - 1)];
                         GameObject Flower = Instantiate(FlowerGO);
-                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z);
+                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z) + Vector3.right * Random.Range(-0.3f, 0.3f) + Vector3.forward * Random.Range(-0.3f, 0.3f);
+                        Flower.transform.localScale *= Random.Range(0.8f, 1.2f);
+                        Vector3 eulers = Flower.transform.eulerAngles;
+                        eulers.y = Random.Range(0f, 360f);
+                        Flower.transform.eulerAngles = eulers;
                     }
                 }
                 
