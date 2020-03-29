@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour, IEntity
 {
-    public bool HasPollen;
-    public void BeehiveInitialized(Beehive hive) { }
+    public int amount = 1;
+    public void Start()
+    {
+        GameManager.beehiveInit.AddListener(BeehiveInitialized);
+    }
+    public void BeehiveInitialized(Beehive hive) { if (Vector3.Distance(transform.position, hive.transform.position) < 10) { hive.plants.Add(this); print("AAAA"); } }
 }

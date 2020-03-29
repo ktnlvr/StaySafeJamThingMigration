@@ -8,8 +8,10 @@ public class Beehive : MonoBehaviour, IEntity
     public void OnEnable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
     public void OnDisable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
 
-    protected List<IEntity> Entities;
-
+    public List<IEntity> Entities;
+    public List<Plant> plants;
+    public List<BeehiveConverter> converters = new List<BeehiveConverter> { };
+    public List<BeehiveCollector> collectors = new List<BeehiveCollector> { };
     void Init()
     {
         GameManager.beehiveInit.Invoke(this);
@@ -20,10 +22,10 @@ public class Beehive : MonoBehaviour, IEntity
         Destroy(this.gameObject);
     }
 
-    public void BeehiveInitialized(Beehive hive)
+    public void BeehiveInitialized(Beehive hive) { }
+
+    public void OnDrawGizmos()
     {
-        if(hive != this && !Entities.Contains(hive))
-            Entities.Add(hive);
-            hive.Entities.Add(this);
+        Gizmos.DrawWireSphere(transform.position, 9f);
     }
 }
