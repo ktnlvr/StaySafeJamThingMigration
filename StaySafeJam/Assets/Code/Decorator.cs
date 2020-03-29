@@ -23,14 +23,7 @@ public class Decorator : VoxelGen
     {
         for(int j = 0; j < (bloacks.Count); j += 14 + Random.Range(0, 14))
         {
-            try
-            {
-                Instantiate(new GameObject().AddComponent<Tree>(), bloacks[j].transform.position, Quaternion.identity);
-            }
-            catch
-            {
-                continue;
-            }
+            
         }
     }
 }

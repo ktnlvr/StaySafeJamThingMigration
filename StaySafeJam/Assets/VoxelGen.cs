@@ -8,6 +8,7 @@ public class VoxelGen : MonoBehaviour
     public float amp = 20f;
     public GameObject CurrentBlockType;
     public GameObject Water;
+    public GameObject[] Flowers; 
     public List<GameObject> bloacks = new List<GameObject>();
     public List<Vector3> blockTransform = new List<Vector3>();
     public Material Autum;
@@ -47,20 +48,34 @@ public class VoxelGen : MonoBehaviour
             {
                 float y = Mathf.PerlinNoise(x/(cols * freq), z/(rows * freq)) * amp;
 
+                blockTransform.Add(new Vector3(x, y, z));
+                GameObject InsBlock = GameObject.Instantiate(CurrentBlockType);
+                InsBlock.transform.position = new Vector3(x - xSeed, y, z - zSeed);
+                bloacks.Add(InsBlock);
+
                 if (y < 3)
                 {
                     blockTransform.Add(new Vector3(x, 3, z));
                     GameObject InsBlockW = GameObject.Instantiate(Water);
                     InsBlockW.transform.position = new Vector3(x - xSeed, 3, z - zSeed);
+                } else
+                {
+                    float flower = Mathf.PerlinNoise(y * 10 - (int)y, y * 24 - (int)y) * 10;
+
+                    if (flower > 4)
+                    {
+                        GameObject FlowerGO = Flowers[Random.Range(0, Flowers.Length - 1)];
+                        GameObject Flower = Instantiate(FlowerGO);
+                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z);
+                    }
                 }
                 
-                blockTransform.Add(new Vector3(x, y, z));
-                GameObject InsBlock = GameObject.Instantiate(CurrentBlockType);
-                InsBlock.transform.position = new Vector3(x - xSeed, y, z - zSeed);
-                bloacks.Add(InsBlock);
                 
+
                 // Add this to add minceraft InsBlock.transform.position = new Vector3(x, (int)Mathf.Round(y), z);
                 
+
+
             }
         }
         /*

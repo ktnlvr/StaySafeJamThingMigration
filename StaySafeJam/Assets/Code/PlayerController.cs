@@ -65,5 +65,32 @@ public class PlayerController : MonoBehaviour
             isSprinting = true;
         if (Input.GetKeyUp(KeyCode.RightShift))
             isSprinting = false;
+        
+
     }
+    /*
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("IN");
+        if(other.gameObject.tag == "Pickable" && Input.GetKeyDown("e"))
+        {
+
+            if (other.gameObject.transform.parent == null)
+            {
+                Debug.Log(other.gameObject.transform.parent);
+                other.gameObject.transform.SetParent(transform);
+                Debug.Log(other.gameObject.transform.parent);
+                other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                other.transform.rotation = Quaternion.Euler(0, 0, 0);
+                other.gameObject.GetComponent<Rigidbody>().velocity *= 0;
+            } else
+            {
+                other.gameObject.transform.parent = null;
+                other.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
+            
+
+        }
+    }
+    */
 }
