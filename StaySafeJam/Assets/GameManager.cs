@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public static class GameManager
 {
+    public static Queen[] queens;
     public static int Level;
     public static int CostMultiplier { get { return (int)(Level) / (int)3 + 1; } }
 
