@@ -35,10 +35,11 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(transform.position, new Vector3(cam.transform.rotation.x, cam.transform.rotation.y, cam.transform.rotation.z), out hit);
 
-        Beehive rayData = hit.collider.gameObject.GetComponent<Beehive>();
+        
 
-        if (rayData != null)
+        if (hit.collider.gameObject.GetComponent<Beehive>() != null)
         {
+            Beehive rayData = hit.collider.gameObject.GetComponent<Beehive>();
             debugText.text = rayData.ScanRadius + " Scan Radius, " + rayData.WorkTime + " Work Time, " + rayData.PollenCapacity + " Pollen Capacity, " + rayData.HoneyCapacity + " Honey Capacity";
         }
 
