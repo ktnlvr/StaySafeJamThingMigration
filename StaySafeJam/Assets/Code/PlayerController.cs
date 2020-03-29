@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting;
     public float dragOffset;
     public Camera cam;
-    public Text debugText;
+    public TextMeshProUGUI debugText;
 
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
@@ -34,7 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(GameManager.honey);
         RaycastHit hit;
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+        {
             if (hit.collider.gameObject.GetComponent<Beehive>())
             {
                 Beehive rayData = hit.collider.gameObject.GetComponent<Beehive>();
@@ -46,6 +48,15 @@ public class PlayerController : MonoBehaviour
 
                 //rayData.ScanRadius + " Scan Radius, " + rayData.WorkTime + " Work Time, " + rayData.PollenCapacity + " Pollen Capacity, " + rayData.HoneyCapacity + " Honey Capacity";
             }
+            else
+            {
+                debugText.text = "";
+            }
+        }
+        else
+        {
+            debugText.text = "";
+        }
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensetivty;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensetivty;

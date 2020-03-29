@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 671da753bb6bfde4aa53dd8231915abb
+guid: 9966567276e36334a956debb1120d2c6
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: lazer84
+  fontName: Yoster Island
   fontNames:
-  - lazer84
+  - Yoster Island
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
