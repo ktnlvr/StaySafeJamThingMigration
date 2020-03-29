@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
                 Instantiate(Sunflower, landPosition, transform.rotation);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             if (GameManager.honey >= 16)
             {

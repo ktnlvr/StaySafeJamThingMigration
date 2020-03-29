@@ -87,6 +87,7 @@ public class Beehive : MonoBehaviour, IEntity
             if(flowMode)
             {
                 CollectHoney();
+                timer = WorkTime;
                 working = true;
             }
         }
