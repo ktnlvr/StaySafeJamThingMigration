@@ -67,11 +67,16 @@ public class VoxelGen : MonoBehaviour
                 {
                     float flower = Mathf.PerlinNoise(y * 10 - (int)y, y * 24 - (int)y) * 10;
                     float tree = Mathf.PerlinNoise(y * 4 - (int)y, y * 7 - (int)y) * 10;
+                    
 
-
-                    if (flower > 7)
+                    if (flower > 4 && flower < 6)
                     {
-                        GameObject FlowerGO = Flowers[Random.Range(0, Flowers.Length - 1)];
+                        GameObject FlowerGO = Flowers[Random.Range(0, 3)];
+                        GameObject Flower = Instantiate(FlowerGO);
+                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z);
+                    } else if(flower > 6)
+                    {
+                        GameObject FlowerGO = Flowers[Random.Range(3, 7)];
                         GameObject Flower = Instantiate(FlowerGO);
                         Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z);
                     }
