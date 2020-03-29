@@ -34,13 +34,18 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(GameManager.honey);
         RaycastHit hit;
-        Physics.Raycast(transform.position, new Vector3(cam.transform.rotation.x, cam.transform.rotation.y, cam.transform.rotation.z), out hit);
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+            if (hit.collider.gameObject.GetComponent<Beehive>())
+            {
+                Beehive rayData = hit.collider.gameObject.GetComponent<Beehive>();
+                debugText.text = $"Effect Radius: {rayData.ScanRadius}\n" +
+                                    $"Work Time: {rayData.WorkTime}\n" +
+                                    $"Pollen Capacity: {rayData.PollenCapacity}\n" +
+                                    $"Honey Capacity: {rayData.HoneyCapacity}\n";
 
-        if (hit.collider.gameObject.GetComponent<Beehive>() != null)
-        {
-            Beehive rayData = hit.collider.gameObject.GetComponent<Beehive>();
-            debugText.text = rayData.ScanRadius + " Scan Radius, " + rayData.WorkTime + " Work Time, " + rayData.PollenCapacity + " Pollen Capacity, " + rayData.HoneyCapacity + " Honey Capacity";
-        }
+
+                //rayData.ScanRadius + " Scan Radius, " + rayData.WorkTime + " Work Time, " + rayData.PollenCapacity + " Pollen Capacity, " + rayData.HoneyCapacity + " Honey Capacity";
+            }
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensetivty;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensetivty;
