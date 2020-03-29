@@ -13,6 +13,7 @@ public static class GameManager
     public static int DefaultScanRadius = 3;
 
     public static BeehiveInit beehiveInit = new BeehiveInit();
+    public static UnityEvent honeyUpd = new UnityEvent();
     static uint _honey;
 
     static public int honey
@@ -23,6 +24,7 @@ public static class GameManager
         }
         set
         {
+            honeyUpd.Invoke();
             _honey = (uint)Mathf.Abs(value);
         }
     }

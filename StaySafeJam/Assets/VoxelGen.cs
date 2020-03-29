@@ -26,17 +26,6 @@ public class VoxelGen : MonoBehaviour
         GenerateTerrain();
         ToAutum();
     }
-
-    void Update()
-    {
-        
-        if (Input.GetKeyDown("k"))
-        {
-            Debug.Log(1);
-            KillTerrain();
-            
-        }
-    }
     
     void GenerateTerrain()
     {
@@ -87,13 +76,6 @@ public class VoxelGen : MonoBehaviour
                         Tree.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 0.6f, InsBlock.transform.position.z- 0.2f);
                     }
                 }
-                
-                
-
-                // Add this to add minceraft InsBlock.transform.position = new Vector3(x, (int)Mathf.Round(y), z);
-                
-
-
             }
         }
         /*

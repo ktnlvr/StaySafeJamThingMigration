@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float dragOffset;
     public Camera cam;
     public TextMeshProUGUI debugText;
+    public GameObject purchaseMenu;
+    public TextMeshProUGUI HoneyCounter;
 
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
@@ -28,6 +30,13 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        GameManager.honey = 8;
+        GameManager.honeyUpd.AddListener(IncrementHoneyCounter);
+    }
+
+    void IncrementHoneyCounter()
+    {
+        HoneyCounter.text = GameManager.honey.ToString();
     }
 
     // Update is called once per frame
@@ -61,7 +70,6 @@ public class PlayerController : MonoBehaviour
         {
             debugText.text = "";
         }
-
         float mouseX = Input.GetAxis("Mouse X") * mouseSensetivty;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensetivty;
 
@@ -101,10 +109,22 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.R))
         {
-            Vector3 landPosition = transform.position + transform.forward * 2 + transform.up * 30;
-            Instantiate(CollectorHive, landPosition, transform.rotation);
-            GameObject particles = Instantiate(SummonParticles, landPosition + transform.up, transform.rotation);
-            Destroy(particles, 0.7f);
+            if (GameManager.honey >= 4)
+            {
+                Vector3 landPosition = transform.position + transform.forward * 2 + transform.up * 30;
+                GameManager.honey -= 4;
+                Instantiate(CollectorHive, landPosition, transform.rotation);
+            }
+            
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            purchaseMenu.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            purchaseMenu.SetActive(false);
         }
     }
 }

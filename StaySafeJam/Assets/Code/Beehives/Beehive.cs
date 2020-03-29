@@ -36,6 +36,7 @@ public class Beehive : MonoBehaviour, IEntity
         plants = new List<Plant>();
         if(transform.position.y <= 3)
         {
+            GameManager.honey += 4;
             Destroy(gameObject);
         }
         GameManager.beehiveInit.Invoke(this);
@@ -63,7 +64,7 @@ public class Beehive : MonoBehaviour, IEntity
     }
 
     // PARTIAl
-    public void CollectHoney() { GameManager.honey += PollenAmount / GameManager.CostMultiplier; PollenAmount = 0; }
+    public void CollectHoney() { GameManager.honey += PollenAmount / GameManager.CostMultiplier; PollenAmount = 0; GameManager.Level++; }
 
     public void Update()
     {
@@ -86,4 +87,25 @@ public class Beehive : MonoBehaviour, IEntity
     {
         Gizmos.DrawWireSphere(transform.position, 9f);
     }
+
+    //private IEnumerator AudioInEase()
+    //{
+    //    float duration = 3f;
+    //    while(duration > 0)
+    //    {
+    //        duration -= Time.deltaTime;
+    //        buzzSource.volume = (1 - (duration / 3f)) * 0.5f;
+    //        yield return null;
+    //    }
+    //}
+    //private IEnumerator AudioOutEase()
+    //{
+    //    float duration = 1f;
+    //    while (duration > 0)
+    //    {
+    //        duration -= Time.deltaTime;
+    //        buzzSource.volume = (duration / 1f) * 0.5f;
+    //        yield return null;
+    //    }
+    //}
 }
