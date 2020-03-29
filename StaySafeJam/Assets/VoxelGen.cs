@@ -8,11 +8,13 @@ public class VoxelGen : MonoBehaviour
     public float amp = 20f;
     public GameObject CurrentBlockType;
     public GameObject Water;
-    public GameObject[] Flowers; 
+    public GameObject[] Flowers;
+    public GameObject[] trees;
     public List<GameObject> bloacks = new List<GameObject>();
     public List<Vector3> blockTransform = new List<Vector3>();
     public Material Autum;
     public Material Winter;
+
     public Material Grass;
 
    
@@ -61,16 +63,20 @@ public class VoxelGen : MonoBehaviour
                 } else
                 {
                     float flower = Mathf.PerlinNoise(y * 10 - (int)y, y * 24 - (int)y) * 10;
+                    float tree = Mathf.PerlinNoise(y * 4 - (int)y, y * 7 - (int)y) * 10;
 
-                    if (flower > 4)
+
+                    if (flower > 7)
                     {
                         GameObject FlowerGO = Flowers[Random.Range(0, Flowers.Length - 1)];
                         GameObject Flower = Instantiate(FlowerGO);
-                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z) + Vector3.right * Random.Range(-0.3f, 0.3f) + Vector3.forward * Random.Range(-0.3f, 0.3f);
-                        Flower.transform.localScale *= Random.Range(0.8f, 1.2f);
-                        Vector3 eulers = Flower.transform.eulerAngles;
-                        eulers.y = Random.Range(0f, 360f);
-                        Flower.transform.eulerAngles = eulers;
+                        Flower.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 1, InsBlock.transform.position.z);
+                    }
+                    if (tree > 8) {
+
+                        GameObject treeGO = trees[Random.Range(0, trees.Length - 1)];
+                        GameObject Tree = Instantiate(treeGO);
+                        Tree.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 0.6f, InsBlock.transform.position.z- 0.2f);
                     }
                 }
                 
