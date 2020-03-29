@@ -24,7 +24,6 @@ public class VoxelGen : MonoBehaviour
     {
         
         GenerateTerrain();
-        ToAutum();
     }
     
     void GenerateTerrain()

@@ -19,9 +19,7 @@ public class PlayerController : MonoBehaviour
     public float dragOffset;
     public Camera cam;
     public TextMeshProUGUI debugText;
-    public GameObject purchaseMenu;
-    public TextMeshProUGUI HoneyCounter;
-
+    AudioSource Audio;
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
 
@@ -37,6 +35,7 @@ public class PlayerController : MonoBehaviour
     void IncrementHoneyCounter()
     {
         HoneyCounter.text = GameManager.honey.ToString();
+        Audio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -105,6 +104,17 @@ public class PlayerController : MonoBehaviour
             isSprinting = true;
         if (Input.GetKeyUp(KeyCode.LeftShift))
             isSprinting = false;
+
+
+        Debug.Log(Velocity.x);
+        if (Velocity.x > 0 || Velocity.z > 0)
+        {
+            Audio.Play();
+
+        } else
+        {
+            Audio.Stop();
+        }
 
 
         if(Input.GetKeyDown(KeyCode.R))
