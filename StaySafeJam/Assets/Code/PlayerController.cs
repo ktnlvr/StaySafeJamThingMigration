@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject SummonParticles;
     public GameObject CollectorHive;
+    public GameObject Sunflower;
     [Space(10)]
     public float mouseSensetivty = 3f;
     public float speed = 3f;
@@ -22,14 +23,16 @@ public class PlayerController : MonoBehaviour
     AudioSource Audio;
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
+    public TextMeshProUGUI HoneyCounter;
+    public GameObject purchaseMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        GameManager.honey = 8;
         GameManager.honeyUpd.AddListener(IncrementHoneyCounter);
+        GameManager.honey = 8;
     }
 
     void IncrementHoneyCounter()
@@ -105,27 +108,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
             isSprinting = false;
 
-
-        Debug.Log(Velocity.x);
-        if (Velocity.x > 0 || Velocity.z > 0)
-        {
-            Audio.Play();
-
-        } else
-        {
-            Audio.Stop();
-        }
-
-
-        if(Input.GetKeyDown(KeyCode.R))
+        Vector3 landPosition = transform.position + transform.forward * 2 + transform.up * 30;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (GameManager.honey >= 4)
             {
-                Vector3 landPosition = transform.position + transform.forward * 2 + transform.up * 30;
                 GameManager.honey -= 4;
                 Instantiate(CollectorHive, landPosition, transform.rotation);
             }
             
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if(GameManager.honey >= 12)
+            {
+                GameManager.honey -= 12;
+                Instantiate(Sunflower, landPosition, transform.rotation);
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Tab))

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Beehive : MonoBehaviour, IEntity
 {
     // STATS
-    public int ScanRadius;
+    public int ScanRadius = 1;
     public int WorkTime;
     public int PollenCapacity;
     public int HoneyCapacity;
@@ -64,7 +64,7 @@ public class Beehive : MonoBehaviour, IEntity
     }
 
     // PARTIAl
-    public void CollectHoney() { GameManager.honey += PollenAmount / GameManager.CostMultiplier; PollenAmount = 0; GameManager.Level++; }
+    public void CollectHoney() { GameManager.honey += PollenAmount / GameManager.CostMultiplier; PollenAmount = 0; GameManager.Level++; GameManager.honeyUpd.Invoke(); }
 
     public void Update()
     {
