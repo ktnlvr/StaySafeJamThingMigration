@@ -11,11 +11,12 @@ public class QuestPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        quests.Add("Press r to drop a hive, make sure it is near flowers");
+        quests.Add("Press 2 to drop a hive, make sure it is near flowers");
         quests.Add("You used up your starting honey making that hive so lets make some more");
         quests.Add("Press E on the hive to start honey production");
         quests.Add("Press E again once it is done to collect the honey");
         quests.Add("Use this menu to buy them with 1 2 or 3");
+        quests.Add("Use m to go to the main menu");
         TextUI.text = quests[0];
     }
 
