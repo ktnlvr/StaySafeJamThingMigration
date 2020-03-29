@@ -5,34 +5,29 @@ using UnityEngine;
 public class audioController : MonoBehaviour
 {
 
-    AudioSource Audio;
+    public AudioSource music1;
+    public AudioSource music2;
+    public AudioSource music3;
+
+    public bool musicLoop2;
+    public bool musicLoop3;
     // Start is called before the first frame update
     void Start()
     {
-        Audio = gameObject.GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (music1.isPlaying == false && musicLoop2 == false && musicLoop3 == false)
+        {
+
+        }
     }
 
-    public void Start2Music()
-    {
-        
-    }
-
-    public void Start3Music()
-    {
-
-    }
-    public void Start4Music()
-    {
-
-    }
     
-
+    
 
 
 
