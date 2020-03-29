@@ -72,7 +72,7 @@ public class VoxelGen : MonoBehaviour
 
                         GameObject treeGO = trees[Random.Range(0, trees.Length - 1)];
                         GameObject Tree = Instantiate(treeGO);
-                        Tree.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 0.6f, InsBlock.transform.position.z- 0.2f);
+                        Tree.transform.position = new Vector3(InsBlock.transform.position.x, InsBlock.transform.position.y + 0.4f, InsBlock.transform.position.z- 0.2f);
                     }
                 }
             }

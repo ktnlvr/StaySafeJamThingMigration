@@ -6,6 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    bool walkingSFX;
     public GameObject SummonParticles;
     public GameObject CollectorHive;
     public GameObject Sunflower;
@@ -20,7 +21,8 @@ public class PlayerController : MonoBehaviour
     public float dragOffset;
     public Camera cam;
     public TextMeshProUGUI debugText;
-    AudioSource Audio;
+    Vector3 lastPos;
+
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
     public TextMeshProUGUI HoneyCounter;
@@ -38,7 +40,6 @@ public class PlayerController : MonoBehaviour
     void IncrementHoneyCounter()
     {
         HoneyCounter.text = GameManager.honey.ToString();
-        Audio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
