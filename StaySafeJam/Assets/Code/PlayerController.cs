@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float dragOffset;
     public Camera cam;
     public TextMeshProUGUI debugText;
+    AudioSource Audio;
 
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Audio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -102,7 +104,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log(Velocity.x);
         if (Velocity.x > 0 || Velocity.z > 0)
         {
+            Audio.Play();
 
+        } else
+        {
+            Audio.Stop();
         }
 
 
