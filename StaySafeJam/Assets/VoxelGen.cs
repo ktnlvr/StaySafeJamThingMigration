@@ -65,7 +65,7 @@ public class VoxelGen : MonoBehaviour
                         Flower.transform.rotation = Quaternion.Euler(0,Random.Range(0,359),0);
                     } else if(flower > 6)
                     {
-                        GameObject FlowerGO = Flowers[Random.Range(3, 9)];
+                        GameObject FlowerGO = Flowers[Random.Range(3, 14)];
                         GameObject Flower = Instantiate(FlowerGO);
                         Flower.transform.position = new Vector3(InsBlock.transform.position.x - 0.45f, InsBlock.transform.position.y + 0.5f, InsBlock.transform.position.z - 0.45f);
                     }
