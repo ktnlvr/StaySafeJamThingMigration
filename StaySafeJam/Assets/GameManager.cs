@@ -12,21 +12,19 @@ public static class GameManager
     public static int DefaultScanRadius = 3;
 
     public static BeehiveInit beehiveInit = new BeehiveInit();
-    public static CallConvertation pollenToHoney = new CallConvertation();
-    static uint _money;
+    static uint _honey;
 
-    static public int Money
+    static public int honey
     {
         get
         {
-            return (int)_money;
+            return (int)_honey;
         }
         set
         {
-            _money = (uint)Mathf.Abs(value);
+            _honey = (uint)Mathf.Abs(value);
         }
     }
 }
 
 public class BeehiveInit : UnityEvent<Beehive> { }
-public class CallConvertation : UnityEvent<BeehiveCollector, int> { }
