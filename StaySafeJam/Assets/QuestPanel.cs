@@ -19,10 +19,25 @@ public class QuestPanel : MonoBehaviour
         TextUI.text = quests[0];
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("l"))
+        {
+            currentQuest++;
+            nextQuest();
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            currentQuest--;
+            nextQuest();
+        }
+
+    }
+
     // Update is called once per frame
     void nextQuest()
     {
-        currentQuest++;
+        
         if (quests.Count > currentQuest)
         {
             TextUI.text = quests[currentQuest];
