@@ -11,9 +11,12 @@ public class Beehive : MonoBehaviour, IEntity
     public int HoneyCapacity;
     public int PollenAmount;
 
-    float timer;
-    bool working;
-    bool flowMode;
+    [HideInInspector]
+    public float timer;
+    [HideInInspector]
+    public bool working;
+    [HideInInspector]
+    public bool flowMode;
 
     public void Awake() => Init();
     public void OnEnable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
@@ -30,6 +33,7 @@ public class Beehive : MonoBehaviour, IEntity
 
     protected void Init()
     {
+        plants = new List<Plant>();
         if(transform.position.y <= 3)
         {
             Destroy(gameObject);
@@ -47,8 +51,6 @@ public class Beehive : MonoBehaviour, IEntity
         if(Input.GetKeyDown(KeyCode.E))
         {
             Init();
-            if (plants.Count > 0)
-                hiveActiveP.Play();
             if (!working)
             {
                 working = true;

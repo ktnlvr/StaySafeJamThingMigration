@@ -43,7 +43,11 @@ public class PlayerController : MonoBehaviour
                 debugText.text = $"Effect Radius: {rayData.ScanRadius}\n" +
                                     $"Work Time: {rayData.WorkTime}\n" +
                                     $"Pollen Capacity: {rayData.PollenCapacity}\n" +
-                                    $"Honey Capacity: {rayData.HoneyCapacity}\n";
+                                    $"Flowers Around: {rayData.plants.Count}\n" +
+                                    $"Honey Capacity: {rayData.HoneyCapacity}\n" +
+                                    $"Honey Amount: {rayData.PollenAmount / GameManager.CostMultiplier}\n" +
+                                    $"Working: {(rayData.working ? "Yes" : "No")}\n" +
+                                    $"Automatic: {(rayData.flowMode ? "Yes" : "No")}";
 
 
                 //rayData.ScanRadius + " Scan Radius, " + rayData.WorkTime + " Work Time, " + rayData.PollenCapacity + " Pollen Capacity, " + rayData.HoneyCapacity + " Honey Capacity";
