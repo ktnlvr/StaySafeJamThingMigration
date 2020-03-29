@@ -5,8 +5,8 @@ using UnityEngine;
 public class Beehive : MonoBehaviour, IEntity
 {
     // STATS
-    public int ScanRadius = 1;
-    public int WorkTime;
+    public float ScanRadius = 3;
+    public float WorkTime;
     public int PollenCapacity;
     public int HoneyCapacity;
     public int PollenAmount;
@@ -15,7 +15,6 @@ public class Beehive : MonoBehaviour, IEntity
     public float timer;
     [HideInInspector]
     public bool working;
-    [HideInInspector]
     public bool flowMode;
 
     public void Awake() => Init();
@@ -29,11 +28,22 @@ public class Beehive : MonoBehaviour, IEntity
     private ParticleSystem beesWorkingP;
     [SerializeField]
     private ParticleSystem honeyFlowingP;
-    void Start() => Init();
+    void Start()
+    {
+        Init();
+        Randomize();
+    }
+
+    public void Randomize()
+    {
+        ScanRadius = Random.Range(0.8f, 2);
+        WorkTime = Random.Range(8f, 15f);
+        PollenCapacity = Random.Range(10, 64);
+        HoneyCapacity = Random.Range(3, 15);
+    }
 
     protected void Init()
     {
-        plants = new List<Plant>();
         if(transform.position.y <= 3)
         {
             GameManager.honey += 4;
@@ -73,8 +83,12 @@ public class Beehive : MonoBehaviour, IEntity
         if(timer <= 0)
         {
             working = false;
-            beesWorkingP.Stop();
             PollenAmount = plants.Count;
+            if(flowMode)
+            {
+                CollectHoney();
+                working = true;
+            }
         }
         if (PollenAmount > 0)
             if (!honeyFlowingP.isPlaying)

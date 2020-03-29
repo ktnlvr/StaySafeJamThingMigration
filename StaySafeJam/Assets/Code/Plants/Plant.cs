@@ -8,6 +8,6 @@ public class Plant : MonoBehaviour, IEntity
 
     public void BeehiveInitialized(Beehive hive)
     {
-        if(Vector3.Distance(hive.transform.position, transform.position) < hive.ScanRadius) hive.plants.Add(this);
+        if (Vector3.Distance(hive.transform.position, transform.position) < hive.ScanRadius) { hive.plants.Add(this); };
     }
 }

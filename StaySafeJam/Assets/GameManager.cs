@@ -14,7 +14,7 @@ public static class GameManager
 
     public static BeehiveInit beehiveInit = new BeehiveInit();
     public static UnityEvent honeyUpd = new UnityEvent();
-    static uint _honey;
+    static uint _honey = 8;
 
     static public int honey
     {

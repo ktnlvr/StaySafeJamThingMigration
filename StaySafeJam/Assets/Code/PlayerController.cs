@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject SummonParticles;
     public GameObject CollectorHive;
     public GameObject Sunflower;
+    public GameObject AutoHive;
     [Space(10)]
     public float mouseSensetivty = 3f;
     public float speed = 3f;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameManager.honeyUpd.Invoke();
         Debug.Log(GameManager.honey);
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
@@ -127,8 +129,18 @@ public class PlayerController : MonoBehaviour
                 Instantiate(Sunflower, landPosition, transform.rotation);
             }
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (GameManager.honey >= 16)
+            {
+                GameManager.honey -= 16;
+                Instantiate(AutoHive, landPosition, transform.rotation);
+            }
 
-        if(Input.GetKeyDown(KeyCode.Tab))
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             purchaseMenu.SetActive(true);
         }
