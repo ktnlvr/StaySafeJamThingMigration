@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             isSprinting = true;
-        if (Input.GetKeyUp(KeyCode.RightShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
             isSprinting = false;
     }
 }

@@ -8,44 +8,36 @@ public partial class BeehiveCollector : Beehive
     float cooldown = 5f;
     [SerializeField]
     ParticleSystem particles;
-
+    int PollenCount = 0;
     public void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && PollenCount > 0)
             particles.gameObject.SetActive(true);
+    }
+    private void Start()
+    {
+        Init();
+    }
+    void Init()
+    {
+        /*
+        Plant[] planties = FindObjectsOfType<Plant>();
+        foreach(Plant plant in plants)
+            if(Vector3.Distance(plant.transform.position, transform.position) < 10)
+                plants.Add(plant);
+                */
+        GameManager.beehiveInit.Invoke(this);
     }
 
     private void OnMouseDown()
     {
-        Debug.Log($"Interracting with collecting");
+        Debug.Log($"Interracting with collector {this}");
         if(timer <= 0)
         {
             timer = cooldown;
-            ReleaseCollectorBees();
+            foreach (Plant plant in plants)
+                print(plant);
         }
-    }
-
-    void ReleaseCollectorBees()
-    {
-        Debug.Log(base.Entities);
-        particles.gameObject.SetActive(false);
-
-        int CollectedPollen = 0;
-        List<BeehiveConverter> converters = new List<BeehiveConverter> { };
-
-        foreach (IEntity Entity in Entities)
-            if (Entity.GetType() == typeof(Plant))
-                if ((Entity as Plant).HasPollen)
-                    CollectedPollen++;
-
-        foreach (IEntity Entity in Entities)
-            if (Entity.GetType() == typeof(BeehiveConverter))
-                converters.Add(Entity as BeehiveConverter);
-
-        int AmountToSend = (CollectedPollen / converters.Count);
-
-        foreach (BeehiveConverter converter in converters)
-            converter.UploadPollen(AmountToSend);
     }
 }
