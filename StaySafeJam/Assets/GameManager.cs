@@ -6,7 +6,7 @@ public static class GameManager
 {
     public static Queen[] queens;
     public static int Level;
-    public static int CostMultiplier { get { return (int)(Level) / (int)3 + 1; } }
+    public static int CostMultiplier { get { return (int)(Level) / (int)8 + 1; } }
 
     // UPGRADEABLES
     public static int ConverterPollenCapacity = 12 * 6;

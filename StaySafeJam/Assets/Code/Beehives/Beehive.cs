@@ -31,6 +31,11 @@ public class Beehive : MonoBehaviour, IEntity
     void Start()
     {
         Init();
+        if(flowMode)
+        {
+            working = true;
+            beesWorkingP.Play();
+        }
         Randomize();
     }
 
@@ -44,8 +49,10 @@ public class Beehive : MonoBehaviour, IEntity
 
     protected void Init()
     {
+        plants = new List<Plant>() { };
         if(transform.position.y <= 3)
         {
+
             GameManager.honey += 4;
             Destroy(gameObject);
         }
