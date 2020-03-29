@@ -1,18 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BeehiveConverter : Beehive
 {
-    int pollen = 0;
+    public int Honey = 0;
 
-    public void UploadPollen(int amount) => pollen = pollen + amount > GameManager.ConverterPollenCapacity ? GameManager.ConverterPollenCapacity : pollen + amount;
+    public void Start() => GameManager.pollenToHoney.AddListener(PollenToHoney);
 
-    public int GetHoney()
+    private void PollenToHoney(BeehiveCollector converter, int amount)
     {
-        int outputHoneyAmount = pollen / 12;
-        pollen -= outputHoneyAmount * 12;
-        pollen = Mathf.Clamp(pollen, 0, GameManager.ConverterPollenCapacity);
-        return outputHoneyAmount;
+        amount = Mathf.Clamp(amount, 0, PollenCapacity + GameManager.ConverterPollenCapacity);
+        Honey = Mathf.Clamp((int)amount / (int)GameManager.CostMultiplier, 0, HoneyCapacity);
     }
 }

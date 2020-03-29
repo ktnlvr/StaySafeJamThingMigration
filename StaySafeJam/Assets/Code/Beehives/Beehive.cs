@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Beehive : MonoBehaviour, IEntity
 {
+    // STATS
+    public int ScanRadius;
+    public int WorkTime;
+    public int PollenCapacity;
+    public int HoneyCapacity;
+
     public void Awake() => Init();
     public void OnEnable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
     public void OnDisable() => GameManager.beehiveInit.AddListener(BeehiveInitialized);
@@ -12,8 +18,12 @@ public class Beehive : MonoBehaviour, IEntity
     public List<Plant> plants;
     public List<BeehiveConverter> converters = new List<BeehiveConverter> { };
     public List<BeehiveCollector> collectors = new List<BeehiveCollector> { };
-    void Init()
+    protected void Init()
     {
+        if(transform.position.y <= 3)
+        {
+            Destroy(gameObject);
+        }
         GameManager.beehiveInit.Invoke(this);
     }
 

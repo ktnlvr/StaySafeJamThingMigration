@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject SummonParticles;
+    public GameObject CollectorHive;
+    [Space(10)]
     public float mouseSensetivty = 3f;
     public float speed = 3f;
     public float jumpForce = 12f;
@@ -27,9 +30,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-
         float mouseX = Input.GetAxis("Mouse X") * mouseSensetivty;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensetivty;
 
@@ -65,32 +65,14 @@ public class PlayerController : MonoBehaviour
             isSprinting = true;
         if (Input.GetKeyUp(KeyCode.LeftShift))
             isSprinting = false;
-        
 
-    }
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("IN");
-        if(other.gameObject.tag == "Pickable" && Input.GetKeyDown("e"))
+
+        if(Input.GetKeyDown(KeyCode.R))
         {
-
-            if (other.gameObject.transform.parent == null)
-            {
-                Debug.Log(other.gameObject.transform.parent);
-                other.gameObject.transform.SetParent(transform);
-                Debug.Log(other.gameObject.transform.parent);
-                other.gameObject.GetComponent<Rigidbody>().useGravity = false;
-                other.transform.rotation = Quaternion.Euler(0, 0, 0);
-                other.gameObject.GetComponent<Rigidbody>().velocity *= 0;
-            } else
-            {
-                other.gameObject.transform.parent = null;
-                other.gameObject.GetComponent<Rigidbody>().useGravity = true;
-            }
-            
-
+            Vector3 landPosition = transform.position + transform.forward * 2 + transform.up * 30;
+            Instantiate(CollectorHive, landPosition, transform.rotation);
+            GameObject particles = Instantiate(SummonParticles, landPosition + transform.up, transform.rotation);
+            Destroy(particles, 0.7f);
         }
     }
-    */
 }
