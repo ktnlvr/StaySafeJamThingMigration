@@ -99,6 +99,13 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
 
 
+        Debug.Log(Velocity.x);
+        if (Velocity.x > 0 || Velocity.z > 0)
+        {
+
+        }
+
+
         if(Input.GetKeyDown(KeyCode.R))
         {
             Vector3 landPosition = transform.position + transform.forward * 2 + transform.up * 30;
