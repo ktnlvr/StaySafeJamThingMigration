@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool isSprinting;
     public float dragOffset;
     public Camera cam;
+    public Text debugText;
 
     float xRotation = 0f;
     Vector3 Velocity = Vector3.zero;
@@ -30,6 +32,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, new Vector3(cam.transform.rotation.x, cam.transform.rotation.y, cam.transform.rotation.z), out hit);
+
+        Beehive rayData = hit.collider.gameObject.GetComponent<Beehive>();
+
+        if (rayData != null)
+        {
+            debugText.text = rayData.ScanRadius + " Scan Radius, " + rayData.WorkTime + " Work Time, " + rayData.PollenCapacity + " Pollen Capacity, " + rayData.HoneyCapacity + " Honey Capacity";
+        }
+
         float mouseX = Input.GetAxis("Mouse X") * mouseSensetivty;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensetivty;
 

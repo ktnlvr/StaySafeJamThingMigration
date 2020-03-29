@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VoxelGen : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class VoxelGen : MonoBehaviour
     public List<Vector3> blockTransform = new List<Vector3>();
     public Material Autum;
     public Material Winter;
-
+    
     public Material Grass;
+
 
    
     public void Start()
@@ -27,6 +29,7 @@ public class VoxelGen : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown("k"))
         {
             Debug.Log(1);
